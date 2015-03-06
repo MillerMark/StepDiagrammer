@@ -1,0 +1,76 @@
+﻿<Window x:Class="StepDiagrammer.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+				xmlns:local="clr-namespace:StepDiagrammer"
+				Icon="./Assets/Icon1.ico"
+        Title="Step Diagrammer" Height="302" Width="601" HorizontalAlignment="Left" MinHeight="302" MinWidth="601">
+	<Window.Resources>
+		<local:TimeToXPositionValueConverter x:Key="TimeToXPositionValueConverter"/>
+		<local:ForceToTopValueConverter x:Key="ForceToTopValueConverter"/>
+	</Window.Resources>
+	<Grid>
+		<Button x:Name="btnStart" Content="Start" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="75" Click="btnStart_Click"/>
+		<Button x:Name="btnStop" Content="Stop" HorizontalAlignment="Left" Margin="90,10,0,0" VerticalAlignment="Top" Width="75" Click="btnStop_Click"/>
+
+		<AdornerDecorator Width="200" Margin="10,40,0,0" Height="22" HorizontalAlignment="Left" VerticalAlignment="Top">
+			<TextBox x:Name="txtDiagramName" Width="200" TextChanged="txtDiagramName_TextChanged" Height="22" Visibility="Hidden">
+				<local:Discoverability.UserPrompt>
+					<TextBlock>(Unnamed Diagram)</TextBlock>
+				</local:Discoverability.UserPrompt>
+			</TextBox>
+		</AdornerDecorator>
+
+		<Slider x:Name="zoomLevel" HorizontalAlignment="Left" Margin="235,13,0,0" VerticalAlignment="Top" Width="178" ValueChanged="zoomLevel_ValueChanged" Minimum="1" Maximum="20"/>
+		<Label x:Name="lblZoom" Content="Zoom:" HorizontalAlignment="Left" Margin="188,8,0,0" VerticalAlignment="Top"/>
+		<TextBlock x:Name="lblClock" Text="0:00.00" HorizontalAlignment="Right" Margin="0,8,9,0" VerticalAlignment="Top"/>
+
+		<Button x:Name="btnStretch" Height="28" Margin="465,8,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="51" Click="btnStretch_Click">
+			<Image Source="./Assets/Stretch2.png"></Image>
+		</Button>
+
+		<Label Content="Key Presses:" HorizontalAlignment="Right" Margin="0,0,81,179" Height="26" VerticalAlignment="Bottom">
+			<Label.Foreground>
+				<SolidColorBrush Color="{DynamicResource {x:Static SystemColors.GrayTextColorKey}}"/>
+			</Label.Foreground>
+		</Label>
+		<Label Content="Force-Time:" HorizontalAlignment="Right" Margin="0,0,81,79" Height="26" VerticalAlignment="Bottom">
+			<Label.Foreground>
+				<SolidColorBrush Color="{DynamicResource {x:Static SystemColors.GrayTextColorKey}}"/>
+			</Label.Foreground>
+		</Label>
+		<Label Content="Mouse Moves:" HorizontalAlignment="Right" Margin="0,0,81,159" Height="26" VerticalAlignment="Bottom">
+			<Label.Foreground>
+				<SolidColorBrush Color="{DynamicResource {x:Static SystemColors.GrayTextColorKey}}"/>
+			</Label.Foreground>
+		</Label>
+		<Label Content="Mouse Clicks:" HorizontalAlignment="Right" Margin="0,0,81,139" VerticalAlignment="Bottom">
+			<Label.Foreground>
+				<SolidColorBrush Color="{DynamicResource {x:Static SystemColors.GrayTextColorKey}}"/>
+			</Label.Foreground>
+		</Label>
+		<Label Content="Mouse Wheel Spins:" HorizontalAlignment="Right" Margin="0,0,81,119" Height="26" VerticalAlignment="Bottom">
+			<Label.Foreground>
+				<SolidColorBrush Color="{DynamicResource {x:Static SystemColors.GrayTextColorKey}}"/>
+			</Label.Foreground>
+		</Label>
+		<TextBlock x:Name="lblKeyPresses" Text="0" Margin="0,0,10,174" Height="26" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="63"/>
+		<TextBlock x:Name="lblMouseMoveDistance" Text="0" Margin="0,0,10,154" Height="26" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="63"/>
+		<TextBlock x:Name="lblMouseClicks" Text="0" Margin="0,0,10,134" Height="26" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="63"/>
+		<TextBlock x:Name="lblMouseWheelSpins" Text="0" Margin="0,0,10,114" Height="26" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="63"/>
+		<TextBlock x:Name="lblForceTime" Text="0" Margin="0,0,10,74" Height="26" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="63"/>
+		<TextBlock Text="Time in Motion:" HorizontalAlignment="Right" Margin="0,0,86,94" Height="26" VerticalAlignment="Bottom">
+			<TextBlock.Foreground>
+				<SolidColorBrush Color="{DynamicResource {x:Static SystemColors.GrayTextColorKey}}"/>
+			</TextBlock.Foreground>
+		</TextBlock>
+		<TextBlock x:Name="lblTimeSpentMoving" Text="0" Margin="0,0,10,94" Height="26" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="63"/>
+		<TextBlock Text="Miller Complexity Index:" FontWeight="Bold" HorizontalAlignment="Right" Margin="0,0,86,54" Height="26" VerticalAlignment="Bottom">
+			<TextBlock.Foreground>
+				<SolidColorBrush Color="{DynamicResource {x:Static SystemColors.GrayTextColorKey}}"/>
+			</TextBlock.Foreground>
+		</TextBlock>
+		<TextBlock x:Name="lblMillerComplexityScore" FontWeight="Bold" Text="0" HorizontalAlignment="Right" Margin="0,0,10,54" Height="26" VerticalAlignment="Bottom" Width="63"/>
+		<local:StepDiagramViewer x:Name="stepDiagramViewer" Margin="0,67,230,0" Height="Auto" Width="Auto"/>
+		<TextBlock x:Name="lblZoomLevel" Text="100%" HorizontalAlignment="Left" Margin="418,13,0,0" VerticalAlignment="Top"/>
+	</Grid>
+</Window>
