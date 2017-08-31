@@ -25,7 +25,7 @@ namespace StepDiagrammer
       {
         if (HookEngine.Listening)
           return null;
-        if (screenGrabs.AllGrabs.Count > 0)
+        if (screenGrabs.AllGrabs.Count > 0 && screenGrabs.AllGrabs[0] != null)
           return screenGrabs.AllGrabs[0].Image;
         else
           return null;
